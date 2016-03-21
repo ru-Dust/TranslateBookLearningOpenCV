@@ -289,16 +289,16 @@ void cvSeqPopMulti(
 ### Добавление и удаление элементов
 
 ```cpp
-    char* cvSeqInsert(
-         CvSeq* seq
-        ,int    before_index
-        ,void*  element = NULL
-    );
+char* cvSeqInsert(
+     CvSeq* seq
+    ,int    before_index
+    ,void*  element = NULL
+);
 
-    void cvSeqRemove(
-         CvSeq* seq
-        ,int    index
-    );
+void cvSeqRemove(
+     CvSeq* seq
+    ,int    index
+);
 ```
 
 Объекты могут быть добавлены в и удалены из середины последовательности при помощи функций *cvSeqInsert()* и *cvSeqRemove()*, соответственно, при этом стоит не забывать о том, что это не очень быстро. В среднем это занимает время, пропорциональное общему размеру последовательности.
@@ -325,29 +325,29 @@ void cvSetSeqBlockSize(
 При необходимости структура может быть обновлена без вызова *cvEndWriteSeq()* при помощи *cvFlushSeqWriter()*.
 
 ```cpp
-    void cvStartWriteSeq(
-         int            seq_flags
-        ,int            header_size
-        ,int            elem_size
-        ,CvMemStorage*  storage
-        ,CvSeqWriter*   writer
-    );
+void cvStartWriteSeq(
+     int            seq_flags
+    ,int            header_size
+    ,int            elem_size
+    ,CvMemStorage*  storage
+    ,CvSeqWriter*   writer
+);
 
-    void cvStartAppendToSeq(
-         CvSeq*         seq
-        ,CvSeqWriter*   writer
-    );
+void cvStartAppendToSeq(
+     CvSeq*         seq
+    ,CvSeqWriter*   writer
+);
 
-    CvSeq* cvEndWriteSeq(
-         CvSeqWriter*   writer
-    );
+CvSeq* cvEndWriteSeq(
+     CvSeqWriter*   writer
+);
 
-    void cvFlushSeqWriter(
-         CvSeqWriter*   writer
-    );
+void cvFlushSeqWriter(
+     CvSeqWriter*   writer
+);
 
-    CV_WRITE_SEQ_ELEM( elem, writer )
-    CV_WRITE_SEQ_ELEM_VAR( elem_ptr, writer )
+CV_WRITE_SEQ_ELEM( elem, writer )
+CV_WRITE_SEQ_ELEM_VAR( elem_ptr, writer )
 ```
 
 Аргументы этих функций в значительной степени говорят сами за себя. Аргументы *cvStartWriteSeq()* *seq_flags*, *header_size* и *elem_size* идентичны соответствующим аргументам *cvCreateSeq()*. Функция *cvStartAppendToSeq()* инициализирует запись новых элементов в конце существующей последовательности *seq*. Макросу *CV_WRITE_SEQ_ELEM()* требуется элемент записи (например, *CvPoint*) и указатель на *CvSeqWriter*; новый элемент добавляется в последовательность и затем *elem* копируется в новый элемент. 
@@ -355,43 +355,43 @@ void cvSetSeqBlockSize(
 Как все это работает показано в простом примере, где создается *CvSeqWriter* и добавляются сто случайных точек прямоугольника 320×240 в новую последовательность.
 
 ```cpp
-    CvSeqWriter writer;
-    cvStartWriteSeq( CV_32SC2, sizeof(CvSeq), sizeof(CvPoint), storage, &writer );
+CvSeqWriter writer;
+cvStartWriteSeq( CV_32SC2, sizeof(CvSeq), sizeof(CvPoint), storage, &writer );
 
-    for(i = 0; i < 100; i++) {
-        CvPoint pt;
-        pt.x = rand()%320;
-        pt.y = rand()%240;
+for(i = 0; i < 100; i++) {
+    CvPoint pt;
+    pt.x = rand()%320;
+    pt.y = rand()%240;
 
-        CV_WRITE_SEQ_ELEM( pt, writer );
-    }
+    CV_WRITE_SEQ_ELEM( pt, writer );
+}
 
-    CvSeq* seq = cvEndWriteSeq( &writer );
+CvSeq* seq = cvEndWriteSeq( &writer );
 ```
 
 Для чтения есть аналогичный набор функций и ещё несколько связанных макросов.
 
 ```cpp
-    void cvStartReadSeq(
-         const CvSeq*   seq
-        ,CvSeqReader*   reader
-        ,int            reverse = 0
-    );
+void cvStartReadSeq(
+     const CvSeq*   seq
+    ,CvSeqReader*   reader
+    ,int            reverse = 0
+);
 
-    int cvGetSeqReaderPos(
-         CvSeqReader*   reader
-    );
+int cvGetSeqReaderPos(
+     CvSeqReader*   reader
+);
 
-    void cvSetSeqReaderPos(
-         CvSeqReader*   reader
-        ,int            index
-        ,int            is_relative = 0
-    );
+void cvSetSeqReaderPos(
+     CvSeqReader*   reader
+    ,int            index
+    ,int            is_relative = 0
+);
 
-    CV_NEXT_SEQ_ELEM( elem_size, reader )
-    CV_PREV_SEQ_ELEM( elem_size, reader )
-    CV_READ_SEQ_ELEM( elem, reader )
-    CV_REV_READ_SEQ_ELEM( elem, reader )
+CV_NEXT_SEQ_ELEM( elem_size, reader )
+CV_PREV_SEQ_ELEM( elem_size, reader )
+CV_READ_SEQ_ELEM( elem, reader )
+CV_REV_READ_SEQ_ELEM( elem, reader )
 ```
 
 Структура *CvSeqReader* аналогична *CvSeqWriter* и инициализируется при помощи *cvStartReadSeq()*. Аргумент *reverse* позволяет читать последовательность в нормальном (*reverse = 0*) и обратном порядке (*reverse = 1*). Функция *cvGetSeqReaderPos()* возвращает целое число, показывающее текущее положение *reader* в последовательности. И наконец, *cvSetSeqReaderPos()* позволяет задавать произвольное место *reader* в последовательности. Если аргумент *is_relative != NULL*, тогда индекс будет интерпретирован относительно текущей позиции в последовательности. В этом случае индекс может быть и положительным и отрицательным. 
