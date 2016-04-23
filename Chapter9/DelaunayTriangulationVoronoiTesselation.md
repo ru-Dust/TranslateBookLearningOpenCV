@@ -120,9 +120,9 @@ typedef long CvSubdiv2DEdge;
 
 // Поля структуры quad-edge
 // 
-#define CV_QUADEDGE2D_FIELDS() 	/
-    int flags; 						/
-    struct CvSubdiv2DPoint* pt[4]; 	/
+#define CV_QUADEDGE2D_FIELDS()      /
+    int flags;                      /
+    struct CvSubdiv2DPoint* pt[4];  /
     CvSubdiv2DEdge next[4];
  
 typedef struct CvQuadEdge2D {
@@ -133,9 +133,9 @@ typedef struct CvQuadEdge2D {
 Точки подраздела Delaulay и соответствующая структура ребра определяется следующим образом:
 
 ```cpp
-#define CV_SUBDIV2D_POINT_FIELDS() 	/
-    int flags; 						/
-    CvSubdiv2DEdge first; 			/ /*Ребро "e" на рисунке*/
+#define CV_SUBDIV2D_POINT_FIELDS()  /
+    int flags;                      /
+    CvSubdiv2DEdge first;           /   /* Ребро "e" на рисунке */
     CvPoint2D32f pt;
  
 #define CV_SUBDIV2D_VIRTUAL_POINT_FLAG (1 << 30)
@@ -176,10 +176,10 @@ CvSubdiv2DEdge cvSubdiv2DGetEdge(
     ,CvNextEdgeType type
 );
  
-#define cvSubdiv2DNextEdge( edge ) 	/
-    cvSubdiv2DGetEdge( 				/
-         edge 						/
-        ,CV_NEXT_AROUND_ORG 		/
+#define cvSubdiv2DNextEdge( edge )  /
+    cvSubdiv2DGetEdge(              /
+         edge                       /
+        ,CV_NEXT_AROUND_ORG         /
     )
 ```
 

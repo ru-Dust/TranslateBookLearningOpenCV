@@ -272,7 +272,7 @@ int main(int argc, char** argv) {
             continue;
         }
 
-        printf(“Got it/n”);
+        printf("Got it/n");
 
         CvPoint p0 = cvPoint(
              cvRound( cornersA[i].x )
