@@ -127,7 +127,7 @@
     * [Распознавание лиц или классификатор Хаара](Chapter13/FaceDetectionOrHaarClassifier.md)
     * [Другие алгоритмы машинного обучения](Chapter13/OtherMachineLearningAlgorithms.md)
     * [Упражнения](Chapter13/Exercises.md)
-* [Будущее OpenCV](Chapter14/PastAndFuture.md)
+* [Будущее OpenCV](Chapter14/OpenCVsFuture.md)
     * [Прошлое и будущее](Chapter14/PastAndFuture.md)
     * [Направления](Chapter14/Directions.md)
     * [OpenCV для разработчиков](Chapter14/OpenCVForArtists.md)

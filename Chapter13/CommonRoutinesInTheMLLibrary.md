@@ -89,18 +89,18 @@ float CvStatMode::predict(
 
 ```cpp
 typedef struct CvTermCriteria {
-    int 	type; 		/* CV_TERMCRIT_ITER и/или CV_TERMCRIT_EPS */
-    int 	max_iter; 	/* максимальное число итераций */
-    double 	epsilon; 	/* значения для остановки процесса */
+    int     type;       /* CV_TERMCRIT_ITER и/или CV_TERMCRIT_EPS */
+    int     max_iter;   /* максимальное число итераций */
+    double  epsilon;    /* значения для остановки процесса */
 }
 ```
 
 Целочисленное значение *max_iter* задает общее число итераций, которое алгоритм должен выполнить. Параметр *epsilon* задает пороговое значение, по достижении которого процесс прекращается. И наконец, параметр *type* сообщает о том, какой из этих двух критериев использовать, при этом возможно одновременное использование обоих критериев (CV_TERMCRIT_ITER | CV_TERMCRIT_EPS). Определения значений для *term_crit.type* следующие:
 
 ```cpp
-#define CV_TERMCRIT_ITER 	1
-#define CV_TERMCRIT_NUMBER 	CV_TERMCRIT_ITER
-#define CV_TERMCRIT_EPS 	2
+#define CV_TERMCRIT_ITER    1
+#define CV_TERMCRIT_NUMBER  CV_TERMCRIT_ITER
+#define CV_TERMCRIT_EPS     2
 ```
 
 Теперь можно перейти к описанию алгоритмов, реализованных в OpenCV. Для начала будет рассмотрен наиболее часто используемый алгоритм *Mahalanobis distance*, а затем неконтролируемый алгоритм *K-means*; оба алгоритма можно найти в библиотеке *cxcore*. Потом будет рассмотрена библиотека ML, начиная с *normal Bayes classifier* и заканчивая алгоритмами, основанные на *decision-tree* (*decision trees*, *boosting*, *random trees* и *Haar cascade*). Для всех других алгоритмов будут представлены краткое описание и примеры использования.
