@@ -79,7 +79,7 @@ Viola и Jones организовали каждую группу boost клас
 //
 void detect_and_draw( IplImage* img, Double scale = 1.3 ) {
     // Unknown error build gitbook
-    // Заменить '(' на '{{' и ')' на '}}' 
+    // Заменить '(' на две '{' и ')' на две '}' 
     // и раскомментировать строки 85-88
     // 
     // static CvScalar colors[] = {
